@@ -41,8 +41,16 @@ public class HomeController {
 	
 	//입력폼으로 가기
 	@RequestMapping("/main")
-	public String inputForm(){	
+	public String inputForm(Model model) throws Exception{
+		List<BoardVO> list = boardService.selectBoard();
+			
+		model.addAttribute("list", list);
+		
 		return "main";
+	}
+	@RequestMapping("/post")
+	public String inputForm2(){	
+		return "post";
 	}
 	
 	
@@ -58,16 +66,9 @@ public class HomeController {
 		boardmap.put("author",author);
 		boardService.insertBoard(boardmap);
 		
-		return "redirect:/select";
+		return "redirect:/main";
 	}
 	
-	//출력하기
-	@RequestMapping("/select")
-	public String selectBoard(Model model) throws Exception {
-		List<BoardVO> list = boardService.selectBoard();
-		
-		model.addAttribute("list", list);
-		return "view";
-	}
+	
 	
 }

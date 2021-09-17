@@ -23,7 +23,7 @@
     </bean>    
     <bean id="propertyConfig" class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
         <constructor-arg ref="configurationEncryptor"/>
-        <property name="location" value="classpath:/property/db.properties"/>
+        <property name="location" ><value>/WEB-INF/config/jdbc/db.properties</value></property>
     </bean>    
     
 	<!-- MySQL dataSource -->	
@@ -52,8 +52,8 @@
 	</bean>
 	
 	<!-- bean 등록 -->
-	<context:component-scan base-package="com.cho.dao"></context:component-scan>
-	<context:component-scan base-package="com.cho.service"></context:component-scan>
+	<context:component-scan base-package="com.cho"></context:component-scan>
+	
 	
 	
 </beans>
