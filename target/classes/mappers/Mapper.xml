@@ -3,11 +3,27 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
+	<resultMap id="boardResult"  type="BoardVO" >
+		<result property="board_id" column="board_id"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="author" column="author"/>
+		<result property="created" column="created"/>
+	</resultMap>
+	
 	<insert id="insertBoard" parameterType="java.util.Map">
-		INSERT INTO board(title, content, author) VALUES(#{title},#{content},#{author})	
+		INSERT INTO board(title, content, author,created) VALUES(#{title},#{content},#{author},NOW())	
 	</insert>
 
 	<select id="selectBoard" resultType="BoardVO">
 		SELECT * FROM board
 	</select>
+	
+	<select id="selectBoardTitle" resultMap="boardResult" parameterType="Integer">
+		SELECT * FROM board WHERE board_id=#{board_id}
+	</select>
+	
+	<delete id="deleteBoard" parameterType="Integer">
+		DELETE FROM board WHERE board_id=#{board_id}
+	</delete>
 </mapper>

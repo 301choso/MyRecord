@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +56,7 @@ public class HomeController {
 	
 	
 	//입력하기	
-	@RequestMapping("/view")
+	@RequestMapping("/insert")
 	public String insertdao(@RequestParam("title") String title,
 							@RequestParam("content") String content,
 							@RequestParam("author") String author) throws Exception{
@@ -69,6 +70,20 @@ public class HomeController {
 		return "redirect:/main";
 	}
 	
+	@RequestMapping("/view")
+	public String printboard(int board_id,int num,Model model,HttpServletRequest request) throws Exception{	
+		
+		model.addAttribute("list", boardService.selectBoardTitle(board_id));
+		model.addAttribute("i", num);
+		
+		return "view";
+	}
+	
+	@RequestMapping("/delete")
+	public String deleteBoard(int board_id,Model model) throws Exception{	
+		 boardService.deleteBoard(board_id);
+		return "redirect:/main";
+	}
 	
 	
 }

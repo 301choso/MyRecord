@@ -24,5 +24,17 @@ public class BoardDAOImpl implements BoardDAO{
 	public void insertBoard(Map<String, String> boardmap) throws Exception {
 		sqlSession.insert("board.insertBoard",boardmap);
 	}
+	
+	@Override
+	public BoardVO selectBoardTitle(int board_id) throws Exception {
+		BoardVO boardVO =  (BoardVO)sqlSession.selectOne("board.selectBoardTitle",board_id);
+		return boardVO;
+	}
+
+	@Override
+	public void deleteBoard(int board_id) throws Exception {
+		sqlSession.delete("board.deleteBoard",board_id);
+		
+	}
 
 }
