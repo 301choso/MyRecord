@@ -15,29 +15,29 @@
 	 	<p>게시물을 입력하세요</p>
 	</div>
 
-	<div class="board_list_wrap">
-		<div class="board_list">
-		<div class = "top">
-			<div class="num">게시물 입력</div>
-			<div class="bt_wrap">
-			
-			<input type = "reset" value = "새로고침">
-			</div>
+	<div class="board_write_wrap">
+		<div class="board_write">
+		<div class = "title">
+			<dl>
+				<dt>제목</dt>
+				<dd><input type="text" name="title" placeholder="제목 입력"></dd>
+			</dl>
+		</div>
+		<div class="info">
+			<dl>
+				<dt>글쓴이</dt>
+				<dd><input type = "text" name = "author" placeholder="글쓴이 입력"></dd>
+			</dl>
+			<dl>
+				<dt>비밀번호</dt>
+				<dd><input type="password" placeholder="비밀번호 입력"></dd>
+			</dl>
+		</div>
+		<div class="cont">
+			<textarea name = "content" placeholder="내용 입력"></textarea>		
 		</div>
 		</div>
-		
-		 <table>
-			<tr>
-		   	 <th>제목</th><td><input type = "text" name = "title" size="80"></td>
-		   	</tr>
-		   	<tr>
-		   	 <th>내용</th><td><textarea name = "content" style="width:100%"></textarea></td>
-		   	</tr>
-		   	<tr>
-		   	 <th>작성자</th><td><input type = "text" name = "author" size="80"></td>
-		   	</tr>
-	    </table>		
-	    
+		<input type = "reset" value = "새로고침">
 	 <div class="bt_wrap">
 		<a href="javascript:post.submit();">등록</a>
 		<a href="/sh/main" class="on">목록</a>
