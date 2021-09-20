@@ -26,4 +26,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteBoard" parameterType="Integer">
 		DELETE FROM board WHERE board_id=#{board_id}
 	</delete>
+	
+	<update id="updateBoard" parameterType="java.util.HashMap">
+		UPDATE board 
+			<set>
+				<if test="title!='' and title!=null">
+					title=#{title},
+				</if>
+				<if test="content'' and content!=null">
+					content=#{content},
+				</if>
+				<if test="author'' and author">
+					author=#{author},
+				</if>
+			</set>
+		WHERE board_id = #{borard_id}
+	</update>
 </mapper>

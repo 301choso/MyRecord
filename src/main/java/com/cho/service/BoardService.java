@@ -14,4 +14,6 @@ public interface BoardService {
 	public BoardVO selectBoardTitle(int board_id) throws Exception;
 
 	public void deleteBoard(int board_id) throws Exception;
+
+	public void updateBoard(int board_id) throws Exception;
 }

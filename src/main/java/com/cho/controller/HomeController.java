@@ -69,9 +69,9 @@ public class HomeController {
 		
 		return "redirect:/main";
 	}
-	
+	//게시물 출력화면
 	@RequestMapping("/view")
-	public String printboard(int board_id,int num,Model model,HttpServletRequest request) throws Exception{	
+	public String printboard(int board_id,int num,Model model) throws Exception{	
 		
 		model.addAttribute("list", boardService.selectBoardTitle(board_id));
 		model.addAttribute("i", num);
@@ -79,11 +79,32 @@ public class HomeController {
 		return "view";
 	}
 	
+	//삭제하기
 	@RequestMapping("/delete")
 	public String deleteBoard(int board_id,Model model) throws Exception{	
 		 boardService.deleteBoard(board_id);
 		return "redirect:/main";
 	}
 	
-	
+	//수정폼으로 가기
+	@RequestMapping("/edit")
+	public String updateForm(int board_id,Model model) throws Exception{	
+		model.addAttribute("list", boardService.selectBoardTitle(board_id));
+		return "edit";
+	}
+	//수정하기
+	@RequestMapping("/update")
+	public String updateBoard(@RequestParam("title") String title,
+				@RequestParam("content") String content,
+				@RequestParam("author") String author,int board_id,Model model) throws Exception{
+
+		Map<String,String> boardmap = new HashMap<String, String>();
+		boardmap.put("title",title);
+		boardmap.put("content",content);
+		boardmap.put("author",author);
+		boardService.insertBoard(boardmap);	
+		
+		 boardService.updateBoard(board_id);
+		return "redirect:/main";
+	}
 }

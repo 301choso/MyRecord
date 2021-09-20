@@ -44,7 +44,7 @@
 	</div>	
 	<div class="bt_wrap">
 		<a href="/sh/main" class="on">목록</a>
-		<a href="#">수정</a>
+		<a href="/sh/edit?board_id=${list.board_id}">수정</a>
 	</div>
 	</div>
 </div>
