@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cho.dao.BoardDAO;
-import com.cho.dto.BoardVO;
+import com.cho.domain.BoardVO;
+import com.cho.domain.Criteria;
 @Service
 public class BoardServiceImpl implements BoardService {
 	
@@ -15,8 +16,13 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO boardDao;
 
 	@Override
-	public List<BoardVO> selectBoard() throws Exception {		
-		return boardDao.selectBoard();
+	public List<BoardVO> selectBoard(Criteria cri) throws Exception {		
+		return boardDao.selectBoard(cri);
+	}
+	
+	@Override
+	public int listCount() throws Exception {		
+		return boardDao.listCount();
 	}
 
 	@Override
@@ -41,5 +47,6 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.updateBoard(boardmap);
 		
 	}
+
 	
 }

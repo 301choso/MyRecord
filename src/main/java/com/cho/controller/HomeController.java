@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cho.dto.BoardVO;
+import com.cho.domain.BoardVO;
+import com.cho.domain.Criteria;
+import com.cho.domain.PageMaker;
 import com.cho.service.BoardService;
 
 @Controller
@@ -42,11 +44,16 @@ public class HomeController {
 	
 	//입력폼으로 가기
 	@RequestMapping(value="/main", method=RequestMethod.GET)
-	public String inputForm(Model model) throws Exception{
-		List<BoardVO> list = boardService.selectBoard();
-			
-		model.addAttribute("list", list);
+	public String inputForm(Criteria cri, Model model) throws Exception{
 		
+		logger.info(cri.toString());
+		
+		model.addAttribute("list", boardService.selectBoard(cri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(boardService.listCount()); //게시물 총 갯수
+				
+		model.addAttribute("pageMaker", pageMaker);
 		return "main";
 	}
 	
@@ -73,11 +80,8 @@ public class HomeController {
 	
 	//게시물 출력화면
 	@RequestMapping(value="/view", method=RequestMethod.GET)
-	public String printboard(int board_id,int num,Model model) throws Exception{	
-		
+	public String printboard(int board_id,Model model) throws Exception{			
 		model.addAttribute("list", boardService.selectBoardTitle(board_id));
-		model.addAttribute("i", num);
-		
 		return "view";
 	}
 	

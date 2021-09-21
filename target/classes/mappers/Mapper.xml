@@ -14,11 +14,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertBoard" parameterType="java.util.Map">
 		INSERT INTO board(title, content, author,created) VALUES(#{title},#{content},#{author},NOW())	
 	</insert>
-
+<!-- 
 	<select id="selectBoard" resultType="BoardVO">
 		SELECT * FROM board
 	</select>
-	
+	 -->
 	<select id="selectBoardTitle" resultMap="boardResult" parameterType="Integer">
 		SELECT * FROM board WHERE board_id=#{board_id}
 	</select>
@@ -42,4 +42,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</set>
 		WHERE board_id = #{board_id}
 	</update>
+	
+	<select id="selectBoard" resultMap="boardResult">
+		<![CDATA[
+			SELECT * FROM board WHERE board_id > 0
+				ORDER BY board_id DESC, created DESC limit #{pageStart}, #{perPageNum}
+		]]>	
+	</select>
+	
+	<select id="listCount" resultType="int">
+		<![CDATA[
+			SELECT count(board_id) FROM board WHERE board_id > 0 
+		]]>
+	</select>
+	
 </mapper>

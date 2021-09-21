@@ -26,7 +26,7 @@
 		<div class = "info">
 			<dl>
 				<dt>번호</dt>
-				<dd>${i-1}</dd>
+				<dd>${list.board_id}</dd>
 			</dl>
 			<dl>
 				<dt>작성일</dt>

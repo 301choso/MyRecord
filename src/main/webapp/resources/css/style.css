@@ -145,9 +145,7 @@
 		font-size:1.4rem;
 	}
 	
-	.board_view .info dl dt {
 	
-	}
 	.board_view .info dl dd {
 		margin-left: 10px;
 		color: #777;
@@ -227,4 +225,23 @@
 		padding: 10px;
 		box-sizing: border-box;
 	}
+	
+
+	.board_page {
+		margin-top: 30px;
+		text-align: center;
 		
+	}
+	
+	.board_page a {
+		display: inline-block;
+		width: 32px;
+		height: 32px;
+		border: 1px solid #ddd;
+		vertical-align: middle;
+		border-left:0;
+		line-height: 100%;
+		box-sizing: border-box;
+	}
+	
+	

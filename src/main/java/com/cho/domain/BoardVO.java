@@ -1,4 +1,4 @@
-package com.cho.dto;
+package com.cho.domain;
 
 import java.util.Date;
 

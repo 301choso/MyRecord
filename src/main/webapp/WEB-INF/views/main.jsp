@@ -13,7 +13,7 @@
 	<title>Insert title here</title>
 </head>
 <body>
-<% int i=1; %>
+
 <div class="board_wrap">
 	<div class="board_title">
 	 	<strong>게시판</strong>
@@ -30,16 +30,61 @@
 		</div>
 		<c:forEach var="list" items="${list}">
 		 <div>
-			<div class="num"><%=i++ %></div>
-			<div class="title"><a href="/sh/view?board_id=${list.board_id}&num=<%=i%>">${list.title}</a></div>
+			<div class="num">${list.board_id}</div>
+			<div class="title"><a href="/sh/view?board_id=${list.board_id}">${list.title}</a></div>
 			<div class="date"><fmt:formatDate value="${list.created}" pattern="yyyy-MM-dd (hh:mm:ss)"/></div>
 			<div class="author">${list.author}</div>
 		 </div>
 		</c:forEach>
 	</div>
 	<div class="board_page">
-		페이징 구역
+		
+		    <c:if test="${pageMaker.prev}">
+		    	<a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}"> << 이전 </a>
+		    </c:if> 
+		
+		    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+		    	<c:choose>
+		    		<c:when test="${pageMaker.cri.page==idx}">
+		    			
+		    			 <a href="${pageMaker.makeQuery(idx)}">${idx}</a>
+		    			
+		    		</c:when>
+		    		<c:otherwise>
+		    			 <a href="${pageMaker.makeQuery(idx)}">${idx}</a>
+		    		</c:otherwise>
+		    	</c:choose>
+		    </c:forEach>
+		
+		    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+		    	<a href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음 >></a>
+		    </c:if> 
+		  
+		  <!-- 페이지 블럭 
+		   <ul>
+		    <c:if test="${pageMaker.prev}">
+		    	<li class="idxn"><a class="paging" href="${pageMaker.makeQuery(pageMaker.startPage - 1)}"> << 이전 </a></li>
+		    </c:if> 
+		
+		    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+		    	<c:choose>
+		    		<c:when test="${pageMaker.cri.page==idx}">
+		    			<font size=+1>
+		    			<li class="idxn"><a class="paging1" href="${pageMaker.makeQuery(idx)}">${idx}</a></li></font>
+		    		</c:when>
+		    		<c:otherwise>
+		    			<li class="idxn"><a class="paging2" href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
+		    		</c:otherwise>
+		    	</c:choose>
+		    </c:forEach>
+		
+		    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+		    	<li class="idxn"><a class="paging" href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음 >></a></li>
+		    </c:if> 
+		  </ul>
+		  -->
 	</div>
+
 	<div class="bt_wrap">
 		<a href="/sh/post" class="on">입력</a>
 		<a href="#">수정</a>

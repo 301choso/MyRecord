@@ -7,7 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.cho.dto.BoardVO;
+import com.cho.domain.BoardVO;
+import com.cho.domain.Criteria;
 @Repository
 public class BoardDAOImpl implements BoardDAO{
 
@@ -15,9 +16,13 @@ public class BoardDAOImpl implements BoardDAO{
 	private SqlSession sqlSession;
 	
 	@Override
-	public List<BoardVO> selectBoard() throws Exception {
-		List<BoardVO> list = sqlSession.selectList("board.selectBoard");
-		return list;
+	public List<BoardVO> selectBoard(Criteria cri) throws Exception {		
+		return sqlSession.selectList("board.selectBoard", cri);		
+	}
+	
+	@Override
+	public int listCount() throws Exception {
+		return sqlSession.selectOne("board.listCount");	
 	}
 
 	@Override
@@ -42,5 +47,6 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlSession.update("board.updateBoard",boardmap);
 		
 	}
+
 
 }
