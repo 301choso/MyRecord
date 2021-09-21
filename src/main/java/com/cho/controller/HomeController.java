@@ -41,7 +41,7 @@ public class HomeController {
 	}
 	
 	//입력폼으로 가기
-	@RequestMapping("/main")
+	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public String inputForm(Model model) throws Exception{
 		List<BoardVO> list = boardService.selectBoard();
 			
@@ -49,14 +49,15 @@ public class HomeController {
 		
 		return "main";
 	}
-	@RequestMapping("/post")
+	
+	@RequestMapping(value="/post")
 	public String inputForm2(){	
 		return "post";
 	}
 	
 	
 	//입력하기	
-	@RequestMapping("/insert")
+	@RequestMapping(value="/insert", method=RequestMethod.POST)
 	public String insertdao(@RequestParam("title") String title,
 							@RequestParam("content") String content,
 							@RequestParam("author") String author) throws Exception{
@@ -69,8 +70,9 @@ public class HomeController {
 		
 		return "redirect:/main";
 	}
+	
 	//게시물 출력화면
-	@RequestMapping("/view")
+	@RequestMapping(value="/view", method=RequestMethod.GET)
 	public String printboard(int board_id,int num,Model model) throws Exception{	
 		
 		model.addAttribute("list", boardService.selectBoardTitle(board_id));
@@ -80,31 +82,35 @@ public class HomeController {
 	}
 	
 	//삭제하기
-	@RequestMapping("/delete")
+	@RequestMapping(value="/delete")
 	public String deleteBoard(int board_id,Model model) throws Exception{	
 		 boardService.deleteBoard(board_id);
 		return "redirect:/main";
 	}
 	
 	//수정폼으로 가기
-	@RequestMapping("/edit")
+	@RequestMapping(value="/edit")
 	public String updateForm(int board_id,Model model) throws Exception{	
 		model.addAttribute("list", boardService.selectBoardTitle(board_id));
 		return "edit";
 	}
+	
 	//수정하기
-	@RequestMapping("/update")
-	public String updateBoard(@RequestParam("title") String title,
+	@RequestMapping(value="/update")
+	public String updateBoard(
+				@RequestParam("board_id") int board_id,
+				@RequestParam("title") String title,
 				@RequestParam("content") String content,
-				@RequestParam("author") String author,int board_id,Model model) throws Exception{
+				@RequestParam("author") String author, Model model) throws Exception{
 
-		Map<String,String> boardmap = new HashMap<String, String>();
+		Map<String,Object> boardmap = new HashMap<String, Object>();
+		
 		boardmap.put("title",title);
 		boardmap.put("content",content);
 		boardmap.put("author",author);
-		boardService.insertBoard(boardmap);	
+		boardmap.put("board_id",board_id);
 		
-		 boardService.updateBoard(board_id);
+		boardService.updateBoard(boardmap);
 		return "redirect:/main";
 	}
 }

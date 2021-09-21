@@ -33,13 +33,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<if test="title!='' and title!=null">
 					title=#{title},
 				</if>
-				<if test="content'' and content!=null">
+				<if test="content!='' and content!=null">
 					content=#{content},
 				</if>
-				<if test="author'' and author">
+				<if test="author!='' and author!=null">
 					author=#{author},
 				</if>
 			</set>
-		WHERE board_id = #{borard_id}
+		WHERE board_id = #{board_id}
 	</update>
 </mapper>

@@ -15,7 +15,7 @@ public interface BoardDAO {
 
 	public void deleteBoard(int board_id) throws Exception;
 
-	public void updateBoard(int board_id) throws Exception;
+	public void updateBoard(Map<String, Object> boardmap) throws Exception;
 
 
 }

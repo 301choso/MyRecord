@@ -8,7 +8,7 @@
 <title>게시물 입력</title>
 </head>
 <body>
-<form name="post" action="update" method="get"> 
+<form name="post" action="update" method="post"> 
 <div class="board_wrap">
 	<div class="board_title">
 	 	<strong>게시판</strong>
@@ -18,15 +18,16 @@
 	<div class="board_write_wrap">
 		<div class="board_write">
 		<div class = "title">
+		<input type="hidden" name="board_id" value=${list.board_id}>
 			<dl>
 				<dt>제목</dt>
-				<dd><input type="text" name="title" placeholder="제목 입력"></dd>
+				<dd><input type="text" name="title" value=${list.title}></dd>
 			</dl>
 		</div>
 		<div class="info">
 			<dl>
 				<dt>글쓴이</dt>
-				<dd><input type = "text" name = "author" placeholder="글쓴이 입력"></dd>
+				<dd><input type = "text" name = "author" value=${list.author}></dd>
 			</dl>
 			<dl>
 				<dt>비밀번호</dt>
@@ -34,7 +35,7 @@
 			</dl>
 		</div>
 		<div class="cont">
-			<textarea name = "content" placeholder="내용 입력"></textarea>		
+			<textarea name = "content" >${list.content}</textarea>	
 		</div>
 		</div>
 		<input type = "reset" value = "새로고침">

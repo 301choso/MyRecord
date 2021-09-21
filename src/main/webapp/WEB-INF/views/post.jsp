@@ -8,7 +8,7 @@
 <title>게시물 입력</title>
 </head>
 <body>
-<form name="post" action="insert" method="get"> 
+<form name="post" action="insert" method="post"> 
 <div class="board_wrap">
 	<div class="board_title">
 	 	<strong>게시판</strong>

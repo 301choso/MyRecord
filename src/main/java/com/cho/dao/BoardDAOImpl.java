@@ -38,8 +38,8 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 
 	@Override
-	public void updateBoard(int board_id) throws Exception {
-		sqlSession.update("board.updateBoard",board_id);
+	public void updateBoard(Map<String, Object> boardmap) throws Exception {
+		sqlSession.update("board.updateBoard",boardmap);
 		
 	}
 
