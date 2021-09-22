@@ -240,8 +240,16 @@
 		border: 1px solid #ddd;
 		vertical-align: middle;
 		border-left:0;
+		border-left: 1px solid #ddd;
 		line-height: 100%;
 		box-sizing: border-box;
+		padding: 10px;
+		
+	}
+	
+	.board_page a:hover {
+		background: #000;
+		color: #999;
 	}
 	
 	

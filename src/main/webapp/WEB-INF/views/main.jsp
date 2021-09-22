@@ -46,7 +46,7 @@
 		    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 		    	<c:choose>
 		    		<c:when test="${pageMaker.cri.page==idx}">
-		    			
+		    		
 		    			 <a href="${pageMaker.makeQuery(idx)}">${idx}</a>
 		    			
 		    		</c:when>
